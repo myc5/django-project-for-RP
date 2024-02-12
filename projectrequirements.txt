@@ -1,0 +1,25 @@
+Create a simpler, more secure version of Clockify
+- able to be stored locally/internally
+- trim unnecessary options
+
+Database:
+Employee, Tasks, Project/Customer
+
+Employees should be able to enter the duration of a project they worked on a daily basis. Disallow them entering it in advance or a day after, but email them before the day ends to remind them.
+	- if they still didn't do that, they need to speak to the secrety/boss to have them entered manually
+
+
+Views and Filtering:
+- on a glance, for a given time frame (day, week, month, year), show employees that are:
+	- assigned to a specific project
+	- on vacation
+	- idle
+- filter by project, customer, ???,
+
+Export files as pdf (prefered) or xls, list all hours for a specific project (use the rp logo, maybe logo of the firm as well optionally), add all hours together
+	For example:
+	Project_Name
+	- Task 1 (allow adding of a comment when entering the duration)
+	- Task 2
+	- ...
+	- Task n 

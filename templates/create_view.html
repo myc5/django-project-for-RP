@@ -1,0 +1,162 @@
+{% extends 'base.html' %}
+
+{% block title %}Hello there, <a href="{% url 'home' %}"> {{request.user.username}}</a>! Click here to <a href="{% url 'logout' %}">log out</a>. | {{today}} |
+    {% endblock %}
+    {% block body %}
+
+<div class="container_b">
+    <div class="toppane2" style="text-align:center">
+        <form method="POST" enctype="multipart/form-data">
+
+            {% csrf_token %}
+
+            {{ context}}
+
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+    <div class="d-flex">
+        <div class="leftpane2" style="text-align:center">
+            <br />
+            <div style="text-align:left">
+                <h5>Hours [Today/Week]: {{phours_today}}/{{phours}}</h5>
+                <br />
+                {% if warning %}
+
+                <p>{{warning}} </p>
+
+                {% endif %}
+
+                {% if note %}
+
+                <p>{{note}} </p>
+
+                {% endif %}
+
+                {% if emp_last %}
+
+                <div style="text-align:left"><h5><u>Most recent entry:</u> </h5></div>
+            </div>
+
+            <table>
+                {% if emp_last.date == today %}
+                <caption>
+                    {{emp_last.date|date:"D, M j"}} <a href="{% url 'edit_view' emp_last.id %}">Edit</a>
+                    <a href="{% url 'delete_view' emp_last.id %}">Delete</a>
+                </caption>
+                {% else %}
+                <caption>
+                    {{emp_last.date|date:"D, M j"}}
+                </caption>
+                {% endif %}
+                <tr>
+                    <th>Description</th>
+                    <th>Project</th>
+                    <th>Time</th>
+                    <th>Comment</th>
+                </tr>
+                <tr>
+                    <td width="270">{{emp_last.name}}</td>
+                    <td width="150">{{emp_last.project.name}}</td">
+                    <td width="100">{{emp_last.get_time_display}}</td>
+                    <td width="250">{{emp_last.comment}}</td>
+                </tr>
+            </table>
+
+
+
+            {% endif %}
+
+
+            {% if emp_hours_cw %}
+
+            <div style="text-align:left"><h5><u>This week</u> </h5></div>
+
+
+
+
+
+            {% for logs in emp_hours_cw %}
+            <table>
+                {% if logs.date == today %}
+                <caption>
+                    {{logs.date|date:"D, M j"}} <a href="{% url 'edit_view' logs.id %}">Edit</a>
+                    <a href="{% url 'delete_view' logs.id %}">Delete</a>
+                </caption>
+                {% else %}
+                <caption>
+                    {{logs.date|date:"D, M j"}}
+                </caption>
+                {% endif %}
+
+                <tr>
+                    <th>Description</th>
+                    <th>Project</th>
+                    <th>Time</th>
+                    <th>Comment</th>
+                </tr>
+                <tr>
+                    <td width="270">{{logs.name}}</td>
+                    <td width="150">{{logs.project.name}}</td">
+                    <td width="100">{{logs.get_time_display}}</td>
+                    <td width="250">{{logs.comment}}</td>
+                </tr>
+            </table>
+            <br />
+
+
+
+            {% endfor %}
+
+
+            {% else %}
+            You have no entries for the current week.
+
+            {% endif %}
+
+            {% if emp_hours_lw %}
+            <div style="text-align:left"><h5><u>Last week (Week {{lw_start|date:"W"}} | {{lw_start|date:"M j"}} to {{lw_end|date:"M j"}})</u> </h5></div>
+
+            <table>
+                <caption>Week {{lw_start|date:"W"}} | {{lw_start|date:"M j"}} to {{lw_end|date:"M j"}} </caption>
+                <tr>
+                    <th>Date</th>
+                    <th>Descriptipnm</th>
+                    <th>Project</th>
+                    <th>Time</th>
+                    <th>Comment</th>
+                </tr>
+                {% for logs in emp_hours_lw %}
+                <tr>
+                    <td width="100">{{logs.date|date:"D, M j"}}</td>
+                    <td width="220">{{logs.name}}</td>
+                    <td width="150">{{logs.project.name}}</td>
+                    <td width="100">{{logs.get_time_display}}</td>
+                    <td width="200">{{logs.comment}}</td>
+                </tr>
+                {% endfor %}
+            </table>
+            {% endif %}
+
+
+
+
+        </div>
+
+        <div class="rightpane2" style="text-align:center">
+            <div style="text-align:center"><h3> RIGHT PANEL </h3></div>
+
+            Free estate
+
+
+        </div>
+    </div>
+</div>
+
+
+
+    {% endblock %}
+
+
+
+

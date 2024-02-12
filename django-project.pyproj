@@ -1,0 +1,153 @@
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <Name>django-project</Name>
+    <RootNamespace>django-project</RootNamespace>
+    <InterpreterId>MSBuild|env|$(MSBuildProjectFullPath)</InterpreterId>
+    <TestFramework>Pytest</TestFramework>
+    <SuppressPackageInstallationPrompt>True</SuppressPackageInstallationPrompt>
+  </PropertyGroup>
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>5afed0af-6821-4f1e-8ebc-26b9904e065c</ProjectGuid>
+    <ProjectHome>.</ProjectHome>
+    <ProjectTypeGuids>{5F0BE9CA-D677-4A4D-8806-6076C0FAAD37};{349c5851-65df-11da-9384-00065b846f21};{888888a0-9f3d-457c-b088-3a5042f75d52}</ProjectTypeGuids>
+    <StartupFile>manage.py</StartupFile>
+    <SearchPath>
+    </SearchPath>
+    <WorkingDirectory>.</WorkingDirectory>
+    <LaunchProvider>Django launcher</LaunchProvider>
+    <DjangoSettingsModule>django_project.settings</DjangoSettingsModule>
+    <WebBrowserUrl>http://localhost:57773</WebBrowserUrl>
+    <OutputPath>.</OutputPath>
+    <SuppressCollectPythonCloudServiceFiles>true</SuppressCollectPythonCloudServiceFiles>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>true</DebugSymbols>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="accounts\admin.py" />
+    <Compile Include="accounts\apps.py" />
+    <Compile Include="accounts\forms.py" />
+    <Compile Include="accounts\migrations\__init__.py" />
+    <Compile Include="accounts\models.py" />
+    <Compile Include="accounts\tests.py" />
+    <Compile Include="accounts\urls.py" />
+    <Compile Include="accounts\variables.py" />
+    <Compile Include="accounts\views.py" />
+    <Compile Include="accounts\__init__.py" />
+    <Compile Include="manage.py" />
+    <Compile Include="django_project\__init__.py" />
+    <Compile Include="django_project\settings.py" />
+    <Compile Include="django_project\urls.py" />
+    <Compile Include="django_project\wsgi.py" />
+    <Compile Include="timely\admin.py" />
+    <Compile Include="timely\apps.py" />
+    <Compile Include="timely\forms.py" />
+    <Compile Include="timely\migrations\__init__.py" />
+    <Compile Include="timely\models.py" />
+    <Compile Include="timely\tests.py" />
+    <Compile Include="timely\urls.py" />
+    <Compile Include="timely\views.py" />
+    <Compile Include="timely\__init__.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="accounts\migrations\__pycache__\__init__.cpython-39.pyc" />
+    <Content Include="accounts\__pycache__\admin.cpython-39.pyc" />
+    <Content Include="accounts\__pycache__\apps.cpython-39.pyc" />
+    <Content Include="accounts\__pycache__\models.cpython-39.pyc" />
+    <Content Include="accounts\__pycache__\urls.cpython-39.pyc" />
+    <Content Include="accounts\__pycache__\views.cpython-39.pyc" />
+    <Content Include="accounts\__pycache__\__init__.cpython-39.pyc" />
+    <Content Include="notes.txt" />
+    <Content Include="projectrequirements.txt" />
+    <Content Include="requirements.txt" />
+    <Content Include="templates\403.html" />
+    <Content Include="templates\analytics.html" />
+    <Content Include="templates\base.html" />
+    <Content Include="templates\client_details.html" />
+    <Content Include="templates\confirm_delete.html" />
+    <Content Include="templates\custom_register.html" />
+    <Content Include="templates\project_details.html" />
+    <Content Include="templates\user_details.html" />
+    <Content Include="templates\home.html" />
+    <Content Include="templates\create_view.html" />
+    <Content Include="templates\registration\login.html" />
+    <Content Include="templates\registration\password_reset_complete.html" />
+    <Content Include="templates\registration\password_reset_confirm.html" />
+    <Content Include="templates\registration\password_reset_done.html" />
+    <Content Include="templates\registration\password_reset_form.html" />
+    <Content Include="templates\registration\signup.html" />
+    <Content Include="templates\update_view.html" />
+    <Content Include="templates\vacations_view.html" />
+    <Content Include="templates\vacation_details.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="accounts\" />
+    <Folder Include="accounts\migrations\" />
+    <Folder Include="accounts\migrations\__pycache__\" />
+    <Folder Include="accounts\__pycache__\" />
+    <Folder Include="django_project\" />
+    <Folder Include="templates\" />
+    <Folder Include="templates\registration\" />
+    <Folder Include="timely\" />
+    <Folder Include="timely\migrations\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Interpreter Include="env\">
+      <Id>env</Id>
+      <Version>3.9</Version>
+      <Description>env (Python 3.9 (64-bit))</Description>
+      <InterpreterPath>Scripts\python.exe</InterpreterPath>
+      <WindowsInterpreterPath>Scripts\pythonw.exe</WindowsInterpreterPath>
+      <PathEnvironmentVariable>PYTHONPATH</PathEnvironmentVariable>
+      <Architecture>X64</Architecture>
+    </Interpreter>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.Django.targets" />
+  <!-- Specify pre- and post-build commands in the BeforeBuild and 
+       AfterBuild targets below. -->
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <AutoAssignPort>True</AutoAssignPort>
+          <UseCustomServer>True</UseCustomServer>
+          <CustomServerUrl>http://localhost</CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}" User="">
+        <WebProjectProperties>
+          <StartPageUrl>
+          </StartPageUrl>
+          <StartAction>CurrentPage</StartAction>
+          <AspNetDebugging>True</AspNetDebugging>
+          <SilverlightDebugging>False</SilverlightDebugging>
+          <NativeDebugging>False</NativeDebugging>
+          <SQLDebugging>False</SQLDebugging>
+          <ExternalProgram>
+          </ExternalProgram>
+          <StartExternalURL>
+          </StartExternalURL>
+          <StartCmdLineArguments>
+          </StartCmdLineArguments>
+          <StartWorkingDirectory>
+          </StartWorkingDirectory>
+          <EnableENC>False</EnableENC>
+          <AlwaysStartWebServerOnDebug>False</AlwaysStartWebServerOnDebug>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

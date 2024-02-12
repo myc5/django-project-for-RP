@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+
+{% block title %} Analytics {% endblock %}
+
+{% block body %}
+
+All Users:
+{% for user in users %}
+<ol><a href="{% url 'user_details' id=user.id %}">{{user.username}}</a></ol>
+{% endfor %}
+<br />
+
+
+All Clients:
+{% for client in clients %}
+<ol><a href="{% url 'client_details' id=client.id %}">{{client.name}}</a></ol>
+{% endfor %}
+<br />
+
+All Projects:
+{% for project in projects %}
+<ol><a href="{% url 'project_details' id=project.id %}">{{project.name}}</a></ol>
+{% endfor %}
+<br />
+
+DEPRECATED, REMOVE LATER (corrected version in Vacations page)
+{% if ongoing_vacs %}
+Ongoing vacations:
+{% for vacation in ongoing_vacs %}
+<ol><a href="{% url 'vacation_details' id=vacation.id %}">{{vacation.start}} - {{vacation.end}} {{vacation.employee.first_name}} {{vacation.employee.last_name}}</a></ol>
+{% endfor %}
+<br />
+{% endif %}
+
+{% if upcoming_vacs_next_week %}
+Upcoming vacations within the next week:
+{% for vacation in upcoming_vacs_next_week %}
+<ol><a href="{% url 'vacation_details' id=vacation.id %}">{{vacation.start}} - {{vacation.end}} {{vacation.employee.first_name}} {{vacation.employee.last_name}}</a></ol>
+{% endfor %}
+<br />
+{% endif %}
+
+{% if upcoming_vacs_next_month %}
+Upcoming vacations within the next month:
+{% for vacation in upcoming_vacs_next_month %}
+<ol><a href="{% url 'vacation_details' id=vacation.id %}">{{vacation.start}} - {{vacation.end}} {{vacation.employee.first_name}} {{vacation.employee.last_name}}</a></ol>
+{% endfor %}
+<br />
+{% endif %}
+
+{% if upcoming_vacs_next_half_year %}
+Upcoming vacations within the next six months:
+{% for vacation in upcoming_vacs_next_half_year %}
+<ol><a href="{% url 'vacation_details' id=vacation.id %}">{{vacation.start}} - {{vacation.end}} {{vacation.employee.first_name}} {{vacation.employee.last_name}}</a></ol>
+{% endfor %}
+<br />
+{% endif %}
+
+
+{% if upcoming_vacs_all %}
+All Upcoming vacations:
+{% for vacation in upcoming_vacs_all %}
+<ol><a href="{% url 'vacation_details' id=vacation.id %}">{{vacation.start}} - {{vacation.end}} {{vacation.employee.first_name}} {{vacation.employee.last_name}}</a></ol>
+{% endfor %}
+<br />
+{% endif %}
+
+All Vacations:
+{% for vacation in vacations %}
+<ol><a href="{% url 'vacation_details' id=vacation.id %}">{{vacation.start}} - {{vacation.end}} {{vacation.employee.first_name}} {{vacation.employee.last_name}}</a></ol>
+{% endfor %}
+
+----DEPRECATED----
+
+{% endblock %}
+

@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block title %}Detail Page for {{vacations.employee.first_name}} {{vacations.employee.last_name}}'s Vacation {% endblock %}
+
+{% block body %}
+
+<p>{{vacations.start}} - {{vacations.end}}</p>
+
+<p>Requested vacation days: {{vacations.days}}</p>
+
+{% if vacations.status == "APPROVED" %}
+Vacation has already been approved.
+{% else %}
+Vacation is pending approval.
+{% if request.user.is_staff %}
+Click <a href="{% url 'admin:timely_vacation_change' vacations.id %}">here</a> to do so now.
+{% endif %}
+{% endif %}
+
+
+{% endblock %}
+

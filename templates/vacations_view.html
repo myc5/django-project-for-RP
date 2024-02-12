@@ -1,0 +1,237 @@
+{% extends 'base.html' %}
+
+{% block title %} Vacations {% endblock %}
+
+{% block body %}
+
+<div class="container_b">
+    <div class="toppane" style="text-align:center">
+        <table>
+            {% if threshhold == 0 %}
+            <caption>Vacation starts for {% now "Y" %} </caption>
+            {% else %}
+            <caption>Vacation starts for {% now "Y" %} with a duration of {{threshhold}} days or longer</caption>
+            {% endif %}
+            <tr>
+                <th></th>
+                <th>January</th>
+                <th>February</th>
+                <th>March</th>
+                <th>April</th>
+                <th>May</th>
+                <th>June</th>
+                <th>July</th>
+                <th>August</th>
+                <th>September</th>
+                <th>October</th>
+                <th>November</th>
+                <th>December</th>
+            </tr>
+            <tr>
+                <td width="100">Approved</td>
+                <td width="100">{{jan_a}}</td>
+                <td width="100">{{feb_a}}</td>
+                <td width="100">{{mar_a}}</td>
+                <td width="100">{{apr_a}}</td>
+                <td width="100">{{may_a}}</td>
+                <td width="100">{{jun_a}}</td>
+                <td width="100">{{jul_a}}</td>
+                <td width="100">{{aug_a}}</td>
+                <td width="100">{{sep_a}}</td>
+                <td width="100">{{oct_a}}</td>
+                <td width="100">{{nov_a}}</td>
+                <td width="100">{{dec_a}}</td>
+            </tr>
+            <tr>
+                <td width="100">Pending</td>
+                <td width="100">{{jan_p}}</td>
+                <td width="100">{{feb_p}}</td>
+                <td width="100">{{mar_p}}</td>
+                <td width="100">{{apr_p}}</td>
+                <td width="100">{{may_p}}</td>
+                <td width="100">{{jun_p}}</td>
+                <td width="100">{{jul_p}}</td>
+                <td width="100">{{aug_p}}</td>
+                <td width="100">{{sep_p}}</td>
+                <td width="100">{{oct_p}}</td>
+                <td width="100">{{nov_p}}</td>
+                <td width="100">{{dec_p}}</td>
+            </tr>
+            <tr>
+                <td width="100">Total</td>
+                <td width="100">{{jan_a|add:jan_p}}</td>
+                <td width="100">{{feb_a|add:feb_p}}</td>
+                <td width="100">{{mar_a|add:mar_p}}</td>
+                <td width="100">{{apr_a|add:apr_p}}</td>
+                <td width="100">{{may_a|add:may_p}}</td>
+                <td width="100">{{jun_a|add:jun_p}}</td>
+                <td width="100">{{jul_a|add:jul_p}}</td>
+                <td width="100">{{aug_a|add:aug_p}}</td>
+                <td width="100">{{sep_a|add:sep_p}}</td>
+                <td width="100">{{oct_a|add:oct_p}}</td>
+                <td width="100">{{nov_a|add:nov_p}}</td>
+                <td width="100">{{dec_a|add:dec_p}}</td>
+            </tr>
+        </table>
+    </div>
+    <div class="d-flex">
+        <div class="leftpane" style="text-align:center">
+            <div class="main">
+
+                <form method="POST">
+                    {% csrf_token %}
+
+                    {{ form.as_p }}
+
+                    <input type="submit" value="Request vacation">
+                </form>
+                {{note}}
+            </div>
+            <br />
+
+
+            {% if approved_upcoming_vacs_all %}
+            <h3> Your approved vacations: </h3>
+
+            {% for vacation in approved_upcoming_vacs_all %}
+            {% if vacation.employee.id == user.id %}
+
+            <ol><a href="{% url 'vacation_details' id=vacation.id %}">{{vacation.start}} - {{vacation.end}} | Vacation days used: {{vacation.days}}</a></ol>
+            {% endif %}
+            {% endfor %}
+
+            <br />
+
+            {% endif %}
+
+            {% if pending_upcoming_vacs_all %}
+            <h3> Your pending vacations: </h3>
+
+            {% for vacation in pending_upcoming_vacs_all %}
+            {% if vacation.employee.id == user.id %}
+
+            <ol><a href="{% url 'vacation_details' id=vacation.id %}">{{vacation.start}} - {{vacation.end}} | Vacation days used: {{vacation.days}}</a></ol>
+
+            {% endif %}
+            {% endfor %}
+
+            <br />
+
+            {% endif %}
+
+            {% if pending_upcoming_vacs_all %}
+            <h3> Your past vacations: </h3>
+
+            {% for vacation in past_approved_vacs_all %}
+            {% if vacation.employee.id == user.id %}
+
+            <ol><a href="{% url 'vacation_details' id=vacation.id %}">{{vacation.start}} - {{vacation.end}} {{vacation.employee.first_name}} {{vacation.employee.last_name}}</a></ol>
+
+            {% endif %}
+            {% endfor %}
+
+            <br />
+
+            {% endif %}
+
+            
+
+        </div>
+        <div class="middlepane" style="text-align:center">
+
+            {% if ongoing_vacs %}
+            <h3> Ongoing vacations: </h3>
+            {% for vacation in ongoing_vacs %}
+            <ol><a href="{% url 'vacation_details' id=vacation.id %}">{{vacation.start}} - {{vacation.end}} {{vacation.employee.first_name}} {{vacation.employee.last_name}}</a></ol>
+            {% endfor %}
+            <br />
+            {% endif %}
+
+
+            <h3> Approved Vacations</h3>
+
+            {% if approved_upcoming_vacs_next_week %}
+            Upcoming vacations within the next week:
+            {% for vacation in approved_upcoming_vacs_next_week %}
+            <ol><a href="{% url 'vacation_details' id=vacation.id %}">{{vacation.start}} - {{vacation.end}} {{vacation.employee.first_name}} {{vacation.employee.last_name}}</a></ol>
+            {% endfor %}
+            <br />
+            {% endif %}
+
+            {% if approved_upcoming_vacs_next_month %}
+            Upcoming vacations within the next month:
+            {% for vacation in approved_upcoming_vacs_next_month %}
+            <ol><a href="{% url 'vacation_details' id=vacation.id %}">{{vacation.start}} - {{vacation.end}} {{vacation.employee.first_name}} {{vacation.employee.last_name}}</a></ol>
+            {% endfor %}
+            <br />
+            {% endif %}
+
+            {% if approved_upcoming_vacs_next_half_year %}
+            Upcoming vacations within the next six months:
+            {% for vacation in approved_upcoming_vacs_next_half_year %}
+            <ol><a href="{% url 'vacation_details' id=vacation.id %}">{{vacation.start}} - {{vacation.end}} {{vacation.employee.first_name}} {{vacation.employee.last_name}}</a></ol>
+            {% endfor %}
+            <br />
+            {% endif %}
+
+
+            {% if approved_upcoming_vacs_all %}
+            All Upcoming vacations:
+            {% for vacation in approved_upcoming_vacs_all %}
+            <ol><a href="{% url 'vacation_details' id=vacation.id %}">{{vacation.start}} - {{vacation.end}} {{vacation.employee.first_name}} {{vacation.employee.last_name}}</a></ol>
+            {% endfor %}
+            <br />
+
+            {% endif %}
+
+            {% if past_approved_vacs_all %}
+            Past vacations this year (up to November of last year):
+            {% for vacation in past_approved_vacs_all %}
+            <ol><a href="{% url 'vacation_details' id=vacation.id %}">{{vacation.start}} - {{vacation.end}} {{vacation.employee.first_name}} {{vacation.employee.last_name}}</a></ol>
+            {% endfor %}
+            <br />
+            {% endif %}
+
+
+        </div>
+        <div class="rightpane" style="text-align:center">
+            <div style="text-align:center"><h3> Pending Vacations </h3></div>
+
+            {% if pending_upcoming_vacs_next_week %}
+            Upcoming vacations within the next week:
+            {% for vacation in pending_upcoming_vacs_next_week %}
+            <ol><a href="{% url 'vacation_details' id=vacation.id %}">{{vacation.start}} - {{vacation.end}} {{vacation.employee.first_name}} {{vacation.employee.last_name}}</a></ol>
+            {% endfor %}
+            <br />
+            {% endif %}
+
+            {% if pending_upcoming_vacs_next_month %}
+            Upcoming vacations within the next month:
+            {% for vacation in pending_upcoming_vacs_next_month %}
+            <ol><a href="{% url 'vacation_details' id=vacation.id %}">{{vacation.start}} - {{vacation.end}} {{vacation.employee.first_name}} {{vacation.employee.last_name}}</a></ol>
+            {% endfor %}
+            <br />
+            {% endif %}
+
+            {% if pending_upcoming_vacs_next_half_year %}
+            Upcoming vacations within the next six months:
+            {% for vacation in pending_upcoming_vacs_next_half_year %}
+            <ol><a href="{% url 'vacation_details' id=vacation.id %}">{{vacation.start}} - {{vacation.end}} {{vacation.employee.first_name}} {{vacation.employee.last_name}}</a></ol>
+            {% endfor %}
+            <br />
+            {% endif %}
+
+            {% if pending_upcoming_vacs_all %}
+            All Pending Upcoming vacations:
+            {% for vacation in pending_upcoming_vacs_all %}
+            <ol><a href="{% url 'vacation_details' id=vacation.id %}">{{vacation.start}} - {{vacation.end}} {{vacation.employee.first_name}} {{vacation.employee.last_name}}</a></ol>
+            {% endfor %}
+            <br />
+            {% endif %}
+
+
+        </div>
+    </div>
+</div>
+
+    {% endblock %}

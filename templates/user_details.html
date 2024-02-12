@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% block title %}Detail Page for {{emp.first_name}} {{emp.last_name}} {% endblock %}
+
+{% block body %}
+
+<div class="container text-center"> <h3>{{vacation}}</h3></div>
+
+
+<table class="table caption-top fixed">
+    <caption> Quick stats for {{emp.first_name}} {{emp.last_name}} </caption>
+    <tr>
+        <th>Hours this month</th>
+        <th>Hours last month</th>
+        <th>Lifetime Hours</th>
+        <th>Most worked on project this month</th>
+        <th>Most worked on project lifetime</th>
+    </tr>
+    <tr>
+        <td width="50">{{emp_hours_cm_sum}}</td>
+        <td width="50">{{emp_hours_lm_sum}}</td>
+        <td width="50">{{emp_hours_all_sum}}</td>
+        <td width="100">{{highest_hours_project_cm_pname}} ({{highest_hours_project_cm_cname}}) - {{highest_hours_project_cm_time}}</td>
+        <td width="100">{{highest_hours_project_lt_pname}} ({{highest_hours_project_lt_cname}}) - {{highest_hours_project_lt_time}}</td>
+    </tr>
+</table>
+
+            <li>Current week: {{emp_hours_cw_sum}}</li>
+            <li>Last week: {{emp_hours_lw_sum}} </li>
+            <li>Current month: {{emp_hours_cm_sum}}</li>
+            <li>Last month: {{emp_hours_lm_sum}}</li>
+            <li>Current year: {{emp_hours_cy_sum}}</li>
+            <li>Last year: {{emp_hours_ly_sum}}</li>
+            <li>Total: {{emp_hours_all_sum}}</li>
+
+            Quick stats:
+            <li>Current week: {{emp_hours_cw_sum}}</li>
+            <li>Last week: {{emp_hours_lw_sum}} </li>
+            <li>Current month: {{emp_hours_cm_sum}}</li>
+            <li>Last month: {{emp_hours_lm_sum}}</li>
+            <li>Current year: {{emp_hours_cy_sum}}</li>
+            <li>Last year: {{emp_hours_ly_sum}}</li>
+            <li>Total: {{emp_hours_all_sum}}</li>
+
+            <li>Q1: {{emp_hours_q1_sum}}</li>
+            <li>Q2: {{emp_hours_q2_sum}}</li>
+            <li>Q3: {{emp_hours_q3_sum}}</li>
+            <li>Q4: {{emp_hours_q4_sum}}</li>
+
+            Bunch of objects
+            <li>CW: {{emp_hours_cw}}</li>
+            <li>LW {{emp_hours_lw}}</li>
+            <li>CM {{emp_hours_cm}}</li>
+            <li>LM {{emp_hours_lm}}</li>
+            <li>Q1 {{emp_hours_q1}}</li>
+            <li>Q2 {{emp_hours_q2}}</li>
+            <li>Q3 {{emp_hours_q3}}</li>
+            <li>Q4 {{emp_hours_q4}}</li>
+            <li>CY {{emp_hours_cy}}</li>
+            <li>LY {{emp_hours_ly}}</li>
+            <li>All {{emp_hours_all}}</li>
+
+            {% endblock %}
