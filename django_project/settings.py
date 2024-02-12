@@ -39,7 +39,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    'django_currentuser.middleware.ThreadLocalUserMiddleware',
+    'django_currentuser.middleware.ThreadLocalUserMiddleware', # remove this later
 ]
 
 ROOT_URLCONF = "django_project.urls"
@@ -122,12 +122,12 @@ LOGOUT_REDIRECT_URL = "home"
 #EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend" # email emulation in the console for testing purposes
 
 # for the real thing
-EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+#EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 #EMAIL_HOST = "smtp-mail.outlook.com" #"smtp.rapidproto.de"
-EMAIL_HOST = "smtp.office365.com"
-EMAIL_USE_TLS = True
-EMAIL_PORT = 587 # 465 if this does not work
-EMAIL_HOST_USER ="mehmet.yilmaz@rapidproto.de"
-EMAIL_HOST_PASSWORD = "rpDE8977$"
-SERVER_EMAIL = EMAIL_HOST_USER
+#EMAIL_HOST = "smtp.office365.com"
+#EMAIL_USE_TLS = True
+#EMAIL_PORT = 587 # 465 if this does not work
+#EMAIL_HOST_USER =""
+#EMAIL_HOST_PASSWORD = ""
+#SERVER_EMAIL = EMAIL_HOST_USER
 
