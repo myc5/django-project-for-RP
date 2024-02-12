@@ -1,5 +1,14 @@
-# Django Auth Tutorial source code
+# Time Management Tool for Rapidproto
 
-Accompanies the tutorial for [Django Login, Logout, Signup, Password Change, and Password Reset](https://learndjango.com/tutorials/django-login-and-logout-tutorial) available on [LearnDjango.com](https://learndjango.com).
+- Track employee hours by day, week and per project/client
+- Vacation planning, to be approved by the admin
+- Adding Projects/Clients is admin only and E-Mail domain determines which holidays will be looked up (either German or Greek ones)
 
-If you find this repo helpful, please give it a ⭐.
+To be added/improved:
+
+- Export time sheet to PDF each month for faster billing
+- Optional blog/news page for the admin that the employees can see immediately on logging hours page
+- Offer more/custom analytics
+- Improve design
+
+(Signup/Login parts from Learningdjango.com, but they turned out to be unnecessary. Still useful to play around with and learn, though).
